@@ -8,8 +8,8 @@ class MsgpackTest(BaseTest):
     def __init__(self):
         logging.info("")
 
-    def serialize(self, object):
-        return msgpack.packb(object)
+    def serialize(self, test_object):
+        return msgpack.packb(test_object)
 
-    def deserialize(self, serialised):
-        return msgpack.unpackb(serialised)
+    def deserialize(self, serialized):
+        return msgpack.unpackb(serialized)

@@ -11,14 +11,14 @@ class XmlTest(BaseTest):
     def __init__(self):
         logging.info("")
 
-    def transform(self, object):
-        return ET.fromstring(dicttoxml(object))
+    def transform(self, test_object):
+        return ET.fromstring(dicttoxml(test_object))
 
-    def serialize(self, object):
-        return ET.tostring(object)
+    def serialize(self, test_object):
+        return ET.tostring(test_object)
 
-    def deserialize(self, serialised):
-        return ET.fromstring(serialised)
+    def deserialize(self, serialized):
+        return ET.fromstring(serialized)
 
-    def comparable(self, object):
-        return ET.tostring(object)
+    def comparable(self, test_object):
+        return ET.tostring(test_object)

@@ -7,29 +7,29 @@ class BaseTest:
     def __init__(self, **kwargs):
         raise NotImplementedError()
 
-    def run(self, object=None):
-        object = self.transform(object)
+    def run(self, test_object=None):
+        test_object = self.transform(test_object)
 
         start = datetime.datetime.now()
-        serialized = self.serialize(object)
+        serialized = self.serialize(test_object)
         deserialized = self.deserialize(serialized)
         end = datetime.datetime.now()
 
-        logging.info(f"Time elapsed: {end - start}")
+        logging.info("Time elapsed: %s", end - start)
 
-        expected = self.comparable(object)
+        expected = self.comparable(test_object)
         got = self.comparable(deserialized)
 
         assert expected == got
 
-    def transform(self, object):
-        return object
+    def transform(self, test_object):
+        return test_object
 
-    def serialize(self, object):
-        return object
+    def serialize(self, test_object):
+        return test_object
 
-    def deserialize(self, serialised):
-        return serialised
+    def deserialize(self, serialized):
+        return serialized
 
-    def comparable(self, object):
-        return json.dumps(object, sort_keys=True)
+    def comparable(self, test_object):
+        return json.dumps(test_object, sort_keys=True)

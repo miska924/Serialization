@@ -1,3 +1,5 @@
+"""This module tests different formats of data serialization"""
+
 import argparse
 import logging
 
@@ -14,10 +16,9 @@ from src.tests.yaml import YamlTest
 from src.tests.objects import TestObject, OBJECTS
 
 
-LOGGING_FORMAT = "%(asctime)s\t%(levelname)s\t%(filename)s\t%(message)s"
-
-
 class TestCase(Enum):
+    """All covered test cases"""
+
     AVRO = "avro"
     JSON = "json"
     MSGPACK = "msgpack"
@@ -39,6 +40,7 @@ TEST_CASE_TO_TEST = {
 
 
 def parse_args():
+    """Parse command line arguments"""
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "--test",
@@ -50,31 +52,12 @@ def parse_args():
         help="Choose a format for testing",
     )
     parser.add_argument(
-        "--object",
+        "--test_object",
         "-o",
-        choices=[test_object.value for test_object in TestObject],
+        choices=[test_test_object.value for test_test_object in TestObject],
         default=TestObject.LARGE.value,
         type=str,
-        help="Choose an object for testing",
-    )
-    parser.add_argument(
-        "--verbose",
-        "-v",
-        action="count",
-        default=0,
+        help="Choose an test_object for testing",
     )
     args = parser.parse_args()
     return args
-
-
-def setup_logging(args):
-    if args.verbose == 0:
-        logging.basicConfig(
-            level=logging.INFO,
-            format=LOGGING_FORMAT,
-        )
-    else:
-        logging.basicConfig(
-            level=logging.DEBUG,
-            format=LOGGING_FORMAT,
-        )

@@ -1,8 +1,6 @@
 from importlib import resources
 import json
-import os
 from enum import Enum
-import src.tests.objects
 
 
 class TestObject(Enum):

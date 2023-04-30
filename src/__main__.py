@@ -1,6 +1,7 @@
+import logging
+
 from src import (
     parse_args,
-    setup_logging,
     TestObject,
     TestCase,
     TEST_CASE_TO_TEST,
@@ -10,18 +11,20 @@ from src import (
 
 def main():
     args = parse_args()
-    setup_logging(args)
 
-    object = OBJECTS[TestObject(args.object)]
+    logging.basicConfig(
+        level=logging.INFO,
+        format="%(asctime)s\t%(levelname)s\t%(filename)s\t%(message)s",
+    )
+
+    test_object = OBJECTS[TestObject(args.test_object)]
 
     tests = (
-        [e for e in TestCase]
-        if "all" in args.test
-        else [TestCase(item) for item in args.test]
+        list(TestCase) if "all" in args.test else [TestCase(item) for item in args.test]
     )
 
     for test in tests:
-        TEST_CASE_TO_TEST[TestCase(test)]().run(object)
+        TEST_CASE_TO_TEST[TestCase(test)]().run(test_object)
 
 
 if __name__ == "__main__":
