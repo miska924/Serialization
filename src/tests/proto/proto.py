@@ -6,9 +6,6 @@ from src.tests.proto.some_message_pb2 import SomeMessage
 
 
 class ProtoTest(BaseTest):
-    def __init__(self):
-        logging.info("")
-
     def transform(self, test_object):
         result = SomeMessage()
         return ParseDict(test_object, result)
@@ -24,3 +21,6 @@ class ProtoTest(BaseTest):
     def comparable(self, test_object: SomeMessage):
         result = MessageToJson(test_object, sort_keys=True)
         return result
+
+    def format_name(self):
+        return "PROTO"

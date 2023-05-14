@@ -8,9 +8,6 @@ LOG.disabled = True
 
 
 class XmlTest(BaseTest):
-    def __init__(self):
-        logging.info("")
-
     def transform(self, test_object):
         return ET.fromstring(dicttoxml(test_object))
 
@@ -22,3 +19,6 @@ class XmlTest(BaseTest):
 
     def comparable(self, test_object):
         return ET.tostring(test_object)
+
+    def format_name(self):
+        return "XML"
