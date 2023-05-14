@@ -6,3 +6,4 @@ fastavro==1.7.3
 protobuf==4.22.3
 pyyaml==6.0
 msgpack==1.0.5
+pytest-timeit==0.3.0

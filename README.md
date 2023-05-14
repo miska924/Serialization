@@ -209,3 +209,8 @@ options:
                         Choose an object for testing
   --verbose, -v
 ```
+
+# With docker compose
+```bash
+docker compose up --build
+```

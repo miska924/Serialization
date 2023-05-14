@@ -2,6 +2,7 @@ import datetime
 import json
 import logging
 import sys
+import timeit
 
 
 class BaseTest:
@@ -15,6 +16,16 @@ class BaseTest:
         serialized = self.serialize(test_object)
         middle = datetime.datetime.now()
         deserialized = self.deserialize(serialized)
+
+        current_globals = globals()
+        current_globals.update({"self": self})
+        current_globals.update({"test_object": test_object})
+        t = timeit.Timer("self.serialize(test_object)", globals=current_globals)
+        try:
+            t.timeit()
+        except:
+            logging.error(t.print_exc())
+
         end = datetime.datetime.now()
 
         seriaalization_time = (middle - start).microseconds // 1000
