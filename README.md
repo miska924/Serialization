@@ -191,26 +191,24 @@ It uses data with the following structure
 
 <br>
 
-# How to use
+# Example
 
 ```bash
-docker build . -t app:1.0 && docker run app:1.0
+command="-o large -t json" docker compose up --build --remove-orphans
 ```
 
 ```bash
-usage: __main__.py [-h] [--test {avro,json,msgpack,pickle,proto,xml,yaml} [{avro,json,msgpack,pickle,proto,xml,yaml} ...]] [--object {simple,medium,big,large}]
-                   [--verbose]
+command="--help" docker compose up --build --remove-orphans
 
-options:
-  -h, --help            show this help message and exit
-  --test {avro,json,msgpack,pickle,proto,xml,yaml} [{avro,json,msgpack,pickle,proto,xml,yaml} ...], -t {avro,json,msgpack,pickle,proto,xml,yaml} [{avro,json,msgpack,pickle,proto,xml,yaml} ...]
-                        Choose a format for testing
-  --object {simple,medium,big,large}, -o {simple,medium,big,large}
-                        Choose an object for testing
-  --verbose, -v
-```
-
-# With docker compose
-```bash
-docker compose up --build
+serialization-client-1  | usage: __main__.py [-h]
+serialization-client-1  |                    [--test {avro,json,msgpack,pickle,proto,xml,yaml} [{avro,json,msgpack,pickle,proto,xml,yaml} ...]]
+serialization-client-1  |                    [--test_object {simple,medium,big,large}]
+serialization-client-1  | 
+serialization-client-1  | options:
+serialization-client-1  |   -h, --help            show this help message and exit
+serialization-client-1  |   --test {avro,json,msgpack,pickle,proto,xml,yaml} [{avro,json,msgpack,pickle,proto,xml,yaml} ...], -t {avro,json,msgpack,pickle,proto,xml,yaml} [{avro,json,msgpack,pickle,proto,xml,yaml} ...]
+serialization-client-1  |                         Choose a format for testing
+serialization-client-1  |   --test_object {simple,medium,big,large}, -o {simple,medium,big,large}
+serialization-client-1  |                         Choose an test_object for testing
+serialization-client-1 exited with code 0
 ```

@@ -7,6 +7,7 @@ import timeit
 
 class BaseTest:
     def __init__(self, **kwargs):
+        self.report = None
         pass
 
     def run(self, test_object=None):
@@ -20,19 +21,13 @@ class BaseTest:
         current_globals = globals()
         current_globals.update({"self": self})
         current_globals.update({"test_object": test_object})
-        t = timeit.Timer("self.serialize(test_object)", globals=current_globals)
-        try:
-            t.timeit()
-        except:
-            logging.error(t.print_exc())
 
         end = datetime.datetime.now()
 
         seriaalization_time = (middle - start).microseconds // 1000
         deserialization_time = (end - middle).microseconds // 1000
-        logging.info(
-            f"{self.format_name()} – {str(sys.getsizeof(serialized))} – {seriaalization_time}ms – {deserialization_time}ms"
-        )
+        self.report = f"{self.format_name()} – {str(sys.getsizeof(serialized))} – {seriaalization_time}ms – {deserialization_time}ms"
+        logging.debug(self.report)
 
         expected = self.comparable(test_object)
         got = self.comparable(deserialized)
@@ -53,3 +48,6 @@ class BaseTest:
 
     def format_name(self):
         raise NotImplementedError()
+
+    def get_report(self):
+        return self.report

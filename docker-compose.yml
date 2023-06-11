@@ -1,23 +1,61 @@
 version: '3.8'
 services:
-  pickle:
-    build: .
-    command: --test pickle --test_object simple
-  # xml:
-  #   build: .
-  #   command: --test xml
-  # json:
-  #   build: .
-  #   command: --test json
-  # proto:
-  #   build: .
-  #   command: --test proto
-  # avro:
-  #   build: .
-  #   command: --test avro
-  # yaml:
-  #   build: .
-  #   command: --test yaml
-  # msgpack:
-  #   build: .
-  #   command: --test msgpack
+  server-xml:
+    image: miska924/study:serialization-server
+    command: --format xml
+    networks:
+      - docker_network
+    ports:
+      - "2924:2924"
+
+  server-json:
+    image: miska924/study:serialization-server
+    command: --format json
+    networks:
+      - docker_network
+    ports:
+      - "2923:2923"
+
+  server-proto:
+    image: miska924/study:serialization-server
+    command: --format proto
+    networks:
+      - docker_network
+    ports:
+      - "2922:2922"
+
+  server-avro:
+    image: miska924/study:serialization-server
+    command: --format avro
+    networks:
+      - docker_network
+    ports:
+      - "2921:2921"
+
+  server-yaml:
+    image: miska924/study:serialization-server
+    command: --format yaml
+    networks:
+      - docker_network
+    ports:
+      - "2920:2920"
+
+  server-msgpack:
+    image: miska924/study:serialization-server
+    command: --format msgpack
+    networks:
+      - docker_network
+    ports:
+      - "2919:2919"
+
+  client:
+    image: miska924/study:serialization-client
+    command: "$command"
+    networks:
+      - docker_network
+    ports:
+      - "2925:2925"
+
+networks:
+  docker_network:
+    name: docker_network
