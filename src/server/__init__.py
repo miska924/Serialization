@@ -60,16 +60,8 @@ def start_server(args):
         level=logging.INFO,
         format="%(message)s",
     )
-    mapping = {
-        "server-msgpack": 2919,
-        "server-yaml": 2920,
-        "server-avro": 2921,
-        "server-proto": 2922,
-        "server-json": 2923,
-        "server-xml": 2924,
-    }
     host = f"server-{args.format}"
-    server_address = (host, mapping[host])
+    server_address = (host, 2924)
     logging.debug(server_address)
     server_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     server_socket.bind(server_address)
