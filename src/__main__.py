@@ -14,7 +14,7 @@ def main():
 
     logging.basicConfig(
         level=logging.INFO,
-        format="%(asctime)s\t%(levelname)s\t%(filename)s\t%(message)s",
+        format="%(message)s",
     )
 
     test_object = OBJECTS[TestObject(args.test_object)]
